@@ -1,5 +1,6 @@
 -- Update current_aptos_names view: change .apt to .move and update collection IDs to MNS
-CREATE OR REPLACE VIEW current_aptos_names AS 
+DROP VIEW IF EXISTS current_aptos_names;
+CREATE VIEW current_aptos_names AS 
 SELECT 
     cal.domain,
     cal.subdomain,
