@@ -1,0 +1,63 @@
+{
+  "timestamp": { "seconds": "1700000004", "nanos": 0 },
+  "version": "1004",
+  "info": {
+    "hash": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD=",
+    "stateChangeHash": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD=",
+    "eventRootHash": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD=",
+    "gasUsed": "500",
+    "success": true,
+    "vmStatus": "Executed successfully",
+    "accumulatorRootHash": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD=",
+    "changes": []
+  },
+  "epoch": "1",
+  "blockHeight": "1004",
+  "type": "TRANSACTION_TYPE_USER",
+  "sizeInfo": {
+    "transactionBytes": 100,
+    "eventSizeInfo": [{ "typeTagBytes": 50, "totalBytes": 500 }],
+    "writeOpSizeInfo": []
+  },
+  "user": {
+    "request": {
+      "sender": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "sequenceNumber": "3",
+      "maxGasAmount": "100000",
+      "gasUnitPrice": "100",
+      "expirationTimestampSecs": { "seconds": "9999999999" },
+      "payload": {
+        "type": "TYPE_ENTRY_FUNCTION_PAYLOAD",
+        "entryFunctionPayload": {
+          "function": {
+            "module": { "address": "0x1", "name": "confidential_asset" },
+            "name": "confidential_transfer"
+          },
+          "typeArguments": [],
+          "arguments": [],
+          "entryFunctionIdStr": "0x1::confidential_asset::confidential_transfer"
+        }
+      },
+      "signature": {
+        "type": "TYPE_ED25519",
+        "ed25519": {
+          "publicKey": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+          "signature": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      }
+    },
+    "events": [
+      {
+        "key": {
+          "accountAddress": "0x1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "type": {
+          "type": "MOVE_TYPES_STRUCT",
+          "struct": { "address": "0x1", "module": "confidential_asset", "name": "Transferred" }
+        },
+        "typeStr": "0x1::confidential_asset::Transferred",
+        "data": "{\"from\":\"0x1111111111111111111111111111111111111111111111111111111111111111\",\"to\":\"0x2222222222222222222222222222222222222222222222222222222222222222\",\"asset_type\":\"0x3333333333333333333333333333333333333333333333333333333333333333\",\"amount\":{\"chunks\":[{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}},{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}},{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}},{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}}]},\"ek_volun_auds\":\"0x\",\"sender_auditor_hint\":\"0x\",\"new_sender_available_balance\":{\"chunks\":[{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}},{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}},{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}},{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}}]},\"new_recip_pending_balance\":{\"chunks\":[{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}},{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}},{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}},{\"left\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"},\"right\":{\"data\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}}]},\"memo\":\"0x\"}"
+      }
+    ]
+  }
+}

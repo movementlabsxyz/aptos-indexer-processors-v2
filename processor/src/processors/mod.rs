@@ -1,4 +1,5 @@
 pub mod account_restoration;
+pub mod confidential_asset;
 pub mod account_transactions;
 pub mod ans;
 pub mod default;
