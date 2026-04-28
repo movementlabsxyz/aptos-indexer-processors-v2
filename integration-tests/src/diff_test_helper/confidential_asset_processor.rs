@@ -5,6 +5,7 @@ use processor::schema::confidential_asset_activities::dsl::*;
 use serde_json::Value;
 use std::collections::HashMap;
 
+#[allow(dead_code)]
 pub fn load_data(conn: &mut PgConnection) -> Result<HashMap<String, Value>> {
     let rows = confidential_asset_activities
         .then_order_by(transaction_version.asc())
