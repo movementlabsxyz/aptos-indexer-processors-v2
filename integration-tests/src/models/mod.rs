@@ -1,4 +1,5 @@
 pub mod account_restoration_models;
+pub mod confidential_asset_models;
 pub mod account_transaction_models;
 pub mod ans_models;
 pub mod default_models;
