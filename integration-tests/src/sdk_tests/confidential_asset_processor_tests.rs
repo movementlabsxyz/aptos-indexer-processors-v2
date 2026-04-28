@@ -24,6 +24,8 @@ pub const CA_TXN_ROLLOVER: &[u8] =
     include_bytes!("test_transactions/confidential_asset/1005_ca_rollover.json");
 pub const CA_TXN_NORMALIZE: &[u8] =
     include_bytes!("test_transactions/confidential_asset/1006_ca_normalize.json");
+pub const CA_TXN_KEY_ROTATE: &[u8] =
+    include_bytes!("test_transactions/confidential_asset/1007_ca_key_rotate.json");
 
 // ---------------------------------------------------------------------------
 // Processor config helper
@@ -68,8 +70,8 @@ pub fn setup_ca_processor_config(
 #[cfg(test)]
 mod sdk_confidential_asset_processor_tests {
     use super::{
-        setup_ca_processor_config, CA_TXN_DEPOSIT, CA_TXN_NORMALIZE, CA_TXN_REGISTER,
-        CA_TXN_ROLLOVER, CA_TXN_TRANSFER, CA_TXN_WITHDRAW,
+        setup_ca_processor_config, CA_TXN_DEPOSIT, CA_TXN_KEY_ROTATE, CA_TXN_NORMALIZE,
+        CA_TXN_REGISTER, CA_TXN_ROLLOVER, CA_TXN_TRANSFER, CA_TXN_WITHDRAW,
     };
     use crate::{
         diff_test_helper::confidential_asset_processor::load_data,
@@ -112,53 +114,9 @@ mod sdk_confidential_asset_processor_tests {
         process_single_ca_txn(CA_TXN_NORMALIZE, Some("ca_normalize".to_string())).await;
     }
 
-    /// Processes all six CA event types in a single batch and validates the
-    /// combined DB output.
     #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
-    async fn test_ca_all_events() {
-        let (generate_flag, custom_output_path) = get_test_config();
-        let output_path = custom_output_path.unwrap_or_else(|| DEFAULT_OUTPUT_FOLDER.to_string());
-
-        let txns = [
-            CA_TXN_REGISTER,
-            CA_TXN_DEPOSIT,
-            CA_TXN_WITHDRAW,
-            CA_TXN_TRANSFER,
-            CA_TXN_ROLLOVER,
-            CA_TXN_NORMALIZE,
-        ];
-
-        let (db, mut test_context) = setup_test_environment(&txns).await;
-        let db_url = db.get_db_url();
-        let (config, processor_name) = setup_ca_processor_config(&test_context, &db_url);
-
-        let processor = ConfidentialAssetProcessor::new(config)
-            .await
-            .expect("Failed to create ConfidentialAssetProcessor");
-        let test_case = Some("ca_all_events".to_string());
-
-        match run_processor_test(
-            &mut test_context,
-            processor,
-            load_data,
-            db_url,
-            generate_flag,
-            output_path.clone(),
-            test_case.clone(),
-        )
-        .await
-        {
-            Ok(mut db_value) => {
-                let _ = validate_json(
-                    &mut db_value,
-                    test_context.get_request_start_version(),
-                    processor_name,
-                    output_path,
-                    test_case,
-                );
-            },
-            Err(e) => panic!("test_ca_all_events failed: {e}"),
-        }
+    async fn test_ca_key_rotate() {
+        process_single_ca_txn(CA_TXN_KEY_ROTATE, Some("ca_key_rotate".to_string())).await;
     }
 
     // -----------------------------------------------------------------------

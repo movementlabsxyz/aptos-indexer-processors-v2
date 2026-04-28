@@ -36,7 +36,9 @@ pub type CompressedPubkey = serde_json::Value;
 /// `confidential_asset::Registered`
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct RegisteredEvent {
+    #[serde(skip_serializing)]
     pub addr: String,
+    #[serde(skip_serializing)]
     pub asset_type: String,
     /// Encryption key registered for this account/asset pair.
     pub ek: CompressedPubkey,
@@ -45,8 +47,11 @@ pub struct RegisteredEvent {
 /// `confidential_asset::Deposited`
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct DepositedEvent {
+    #[serde(skip_serializing)]
     pub from: String,
+    #[serde(skip_serializing)]
     pub to: String,
+    #[serde(skip_serializing)]
     pub asset_type: String,
     /// Plaintext amount brought into the protocol (serialized as a string by the node).
     pub amount: serde_json::Value,
@@ -57,8 +62,11 @@ pub struct DepositedEvent {
 /// `confidential_asset::Withdrawn`
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct WithdrawnEvent {
+    #[serde(skip_serializing)]
     pub from: String,
+    #[serde(skip_serializing)]
     pub to: String,
+    #[serde(skip_serializing)]
     pub asset_type: String,
     /// Plaintext amount taken out of the protocol (serialized as a string by the node).
     pub amount: serde_json::Value,
@@ -69,8 +77,11 @@ pub struct WithdrawnEvent {
 /// `confidential_asset::Transferred`
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct TransferredEvent {
+    #[serde(skip_serializing)]
     pub from: String,
+    #[serde(skip_serializing)]
     pub to: String,
+    #[serde(skip_serializing)]
     pub asset_type: String,
     /// Encrypted transfer amount under the recipient key (four-chunk pending-balance layout).
     pub amount: CompressedBalance,
@@ -89,7 +100,9 @@ pub struct TransferredEvent {
 /// `confidential_asset::Normalized`
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct NormalizedEvent {
+    #[serde(skip_serializing)]
     pub addr: String,
+    #[serde(skip_serializing)]
     pub asset_type: String,
     /// New available balance ciphertext after re-encryption to normalize chunk bounds.
     pub new_available_balance: CompressedBalance,
@@ -98,7 +111,9 @@ pub struct NormalizedEvent {
 /// `confidential_asset::RolledOver`
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct RolledOverEvent {
+    #[serde(skip_serializing)]
     pub addr: String,
+    #[serde(skip_serializing)]
     pub asset_type: String,
     /// New available balance ciphertext after the pending balance was rolled in.
     pub new_available_balance: CompressedBalance,
@@ -107,7 +122,9 @@ pub struct RolledOverEvent {
 /// `confidential_asset::KeyRotated`
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct KeyRotatedEvent {
+    #[serde(skip_serializing)]
     pub addr: String,
+    #[serde(skip_serializing)]
     pub asset_type: String,
     /// The new encryption key after rotation.
     pub new_ek: CompressedPubkey,
@@ -118,7 +135,9 @@ pub struct KeyRotatedEvent {
 /// `confidential_asset::FreezeChanged`
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct FreezeChangedEvent {
+    #[serde(skip_serializing)]
     pub addr: String,
+    #[serde(skip_serializing)]
     pub asset_type: String,
     /// `true` = incoming transfers paused; `false` = resumed.
     pub frozen: bool,
@@ -134,6 +153,7 @@ pub struct AllowListChangedEvent {
 /// `confidential_asset::TokenAllowChanged`
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct TokenAllowChangedEvent {
+    #[serde(skip_serializing)]
     pub asset_type: String,
     /// `true` = confidential transfers permitted for this token; `false` = disabled.
     pub allowed: bool,
@@ -142,6 +162,7 @@ pub struct TokenAllowChangedEvent {
 /// `confidential_asset::AuditorChanged`
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct AuditorChangedEvent {
+    #[serde(skip_serializing)]
     pub asset_type: String,
     /// New asset-specific auditor key, or `None` (as `{"vec":[]}`) when cleared.
     pub new_auditor_ek: serde_json::Value,
